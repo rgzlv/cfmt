@@ -1,0 +1,256 @@
+# Based on clang 20.0.0git docs at https://clang.llvm.org/docs/ClangFormatStyleOptions.html
+# Tested on clang 18.1.8.
+---
+BasedOnStyle: LLVM
+# AccessModifierOffset
+AlignAfterOpenBracket: DontAlign
+AlignArrayOfStructures: Left
+AlignConsecutiveAssignments:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+  AlignCompound: true
+  PadOperators: true
+AlignConsecutiveBitFields:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+AlignConsecutiveDeclarations:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+  # AlignFunctionDeclarations: true # Unrecognized on clang-format 18.1.8 but it's turned on.
+  AlignFunctionPointers: true
+AlignConsecutiveMacros:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+AlignConsecutiveShortCaseStatements:
+  Enabled: true
+  AcrossEmptyLines: false
+  AcrossComments: true
+  # AlignCaseArrows: false # Unrecognized on clang-format 18.1.8.
+  AlignCaseColons: false
+# AlignConsecutiveTableGenBreakingDAGArgColons
+# AlignConsecutiveTableGenCondOperatorColons
+# AlignConsecutiveTableGenDefinitionColons
+# AlignEscapedNewlines: LeftWithLastLine # Unrecognized on clang-format 18.1.8.
+AlignEscapedNewlines: Left
+AlignOperands: DontAlign
+AlignTrailingComments:
+  Kind: Always
+  OverEmptyLines: 0
+AllowAllArgumentsOnNextLine: true
+# AllowAllConstructorInitializersOnNextLine # Deprecated.
+AllowAllParametersOfDeclarationOnNextLine: true
+# AllowBreakBeforeNoexceptSpecifier
+AllowShortBlocksOnASingleLine: Always
+# AllowShortCaseExpressionOnASingleLine: true # Unrecognized on clang-format 18.1.8.
+AllowShortCaseLabelsOnASingleLine: true
+# AllowShortCompoundRequirementOnASingleLine
+AllowShortEnumsOnASingleLine: true
+AllowShortFunctionsOnASingleLine: All
+AllowShortIfStatementsOnASingleLine: AllIfsAndElse
+# AllowShortLambdasOnASingleLine
+AllowShortLoopsOnASingleLine: true
+# AlwaysBreakAfterDefinitionReturnType # Deprecated.
+# AlwaysBreakAfterReturnType # Deprecated.
+AlwaysBreakBeforeMultilineStrings: true
+# AlwaysBreakTemplateDeclarations # Deprecated.
+# AttributeMacros
+BinPackArguments: true
+BinPackParameters: true # Constants unrecognized on clang-format 18.1.8.
+BitFieldColonSpacing: Both
+BraceWrapping:
+  AfterCaseLabel: false
+  AfterClass: false
+  AfterControlStatement: Never
+  AfterEnum: false
+  AfterFunction: false
+  AfterNamespace: false
+  # AfterObjCDeclaration
+  AfterStruct: false
+  AfterUnion: false
+  AfterExternBlock: false
+  BeforeCatch: false
+  BeforeElse: false
+  # BeforeLambdaBody
+  BeforeWhile: false
+  IndentBraces: false
+  # SplitEmptyFunction
+  # SplitEmptyRecord
+  # SplitEmptyNamespace
+# BracedInitializerIndentWidth
+BreakAdjacentStringLiterals: true
+BreakAfterAttributes: Always
+# BreakAfterJavaFieldAnnotations
+# BreakAfterReturnType: Automatic # Unrecognized on clang-format 18.1.8.
+BreakArrays: false
+BreakBeforeBinaryOperators: All
+BreakBeforeBraces: Custom
+# BreakBeforeConceptDeclarations
+# BreakBeforeInlineASMColon
+BreakBeforeTernaryOperators: true
+# BreakBinaryOperations
+BreakConstructorInitializers: AfterColon
+# BreakFunctionDefinitionParameters
+BreakInheritanceList: AfterColon
+BreakStringLiterals: true
+# BreakTemplateDeclarations
+ColumnLimit: 80
+# CommentPragmas
+CompactNamespaces: false
+# ConstructorInitializerAllOnOneLineOrOnePerLine # Deprecated.
+# ConstructorInitializerIndentWidth
+ContinuationIndentWidth: 2
+Cpp11BracedListStyle: true
+# DeriveLineEnding # Deprecated.
+# DerivePointerAlignment
+# DisableFormat
+EmptyLineAfterAccessModifier: Never
+EmptyLineBeforeAccessModifier: Never
+# ExperimentalAutoDetectBinPacking
+FixNamespaceComments: true
+# ForEachMacros
+# IfMacros
+IncludeBlocks: Regroup
+# Header names were taken from C++11 (page 408, 17.6.2.1), C99 (page 165, 7.1.2)
+# and POSIX 2008 (https://pubs.opengroup.org/onlinepubs/9699919799.orig/idx/head.html).
+IncludeCategories:
+  # C++ standard library headers.
+  - Regex: '^<(algorithm|fstream|list|regex|tuple|array|functional|locale|scoped_allocator|type_traits|atomic|future|map|set|typeindex|bitset|initializer_list|memory|sstream|typeinfo|chrono|iomanip|mutex|stack|unordered_map|codecvt|ios|new|stdexcept|unordered_set|complex|iosfwd|numeric|streambuf|utility|condition_variable|iostream|ostream|string|valarray|deque|istream|queue|strstream|vector|exception|iterator|random|system_error|forward_list|limits|ratio|thread)>$'
+    Priority: -5
+  # C++ standard library headers for C facilities.
+  - Regex: '^<(cassert|cinttypes|csignal|cstdio|cwchar|ccomplex|ciso646|cstdalign|cstdlib|cctype|climits|cstdarg|cstring|cerrno|clocale|cstdbool|ctgmath|cfenv|cmath|cstddef|ctime|cfloat|csetjmp|cstdint|cuchar)>$'
+    Priority: -4
+  # C standard library headers.
+  - Regex: '^<(assert\.h|inttypes\.h|signal\.h|stdlib\.h|complex\.h|iso646\.h|stdarg\.h|string\.h|ctype\.h|limits\.h|stdbool\.h|tgmath\.h|errno\.h|locale\.h|stddef\.h|time\.h|fenv\.h|math\.h|stdint\.h|wchar\.h|float\.h|setjmp\.h|stdio\.h|wctype\.h)>$'
+    Priority: -3
+  # C POSIX headers.
+  - Regex: '^<(aio\.h|arpa/inet\.h|assert\.h|complex\.h|cpio\.h|ctype\.h|dirent\.h|dlfcn\.h|errno\.h|fcntl\.h|fenv\.h|float\.h|fmtmsg\.h|fnmatch\.h|ftw\.h|glob\.h|grp\.h|iconv\.h|inttypes\.h|iso646\.h|langinfo\.h|libgen\.h|limits\.h|locale\.h|math\.h|monetary\.h|mqueue\.h|ndbm\.h|net/if\.h|netdb\.h|netinet/in\.h|netinet/tcp\.h|nl_types\.h|poll\.h|pthread\.h|pwd\.h|regex\.h|sched\.h|search\.h|semaphore\.h|setjmp\.h|signal\.h|spawn\.h|stdarg\.h|stdbool\.h|stddef\.h|stdint\.h|stdio\.h|stdlib\.h|string\.h|strings\.h|stropts\.h|sys/ipc\.h|sys/mman\.h|sys/msg\.h|sys/resource\.h|sys/select\.h|sys/sem\.h|sys/shm\.h|sys/socket\.h|sys/stat\.h|sys/statvfs\.h|sys/time\.h|sys/times\.h|sys/types\.h|sys/uio\.h|sys/un\.h|sys/utsname\.h|sys/wait\.h|syslog\.h|tar\.h|termios\.h|tgmath\.h|time\.h|trace\.h|ulimit\.h|unistd\.h|utime\.h|utmpx\.h|wchar\.h|wctype\.h|wordexp\.h)>$'
+    Priority: -2
+  # System specific or external headers.
+  - Regex: '^<.*>$'
+    Priority: -1
+  # Main header (priority 0).
+  # Other headers.
+  - Regex: '^".*"$'
+    Priority: 1
+IncludeIsMainRegex: '(_test)?$'
+# IncludeIsMainSourceRegex
+IndentAccessModifiers: false
+IndentCaseBlocks: false
+IndentCaseLabels: false
+# IndentExternBlockStyle: NoIndent # Unrecognized on clang-format 18.1.8.
+IndentGotoLabels: true
+IndentPPDirectives: BeforeHash
+# IndentRequiresClause
+IndentWidth: 2
+IndentWrappedFunctionNames: false
+InsertBraces: false
+InsertNewlineAtEOF: true
+# InsertTrailingCommas
+IntegerLiteralSeparator:
+  Binary: 0
+  BinaryMinDigits: 4
+  Decimal: 0
+  DecimalMinDigits: 3
+  Hex: 0
+  HexMinDigits: 2
+# JavaImportGroups
+JavaScriptQuotes: Double
+JavaScriptWrapImports: true
+# KeepEmptyLines # Unrecognized on clang-format 18.1.8.
+# KeepEmptyLinesAtEOF # Deprecated.
+# KeepEmptyLinesAtTheStartOfBlocks # Deprecated.
+# KeepFormFeed
+# LambdaBodyIndentation
+# Language
+LineEnding: LF
+# MacroBlockBegin
+# MacroBlockEnd
+# Macros
+# MainIncludeChar: Quote # Unrecognized on clang-format 18.1.8.
+MaxEmptyLinesToKeep: 1
+NamespaceIndentation: None
+# NamespaceMacros
+# ObjCBinPackProtocolList
+ObjCBlockIndentWidth: 2
+# ObjCBreakBeforeNestedBlockParam
+# ObjCPropertyAttributeOrder
+ObjCSpaceAfterProperty: false
+ObjCSpaceBeforeProtocolList: false
+PPIndentWidth: -1
+PackConstructorInitializers: BinPack
+# PenaltyBreakAssignment
+# PenaltyBreakBeforeFirstCallParameter
+# PenaltyBreakComment
+# PenaltyBreakFirstLessLess
+# PenaltyBreakOpenParenthesis
+# PenaltyBreakScopeResolution
+# PenaltyBreakString
+# PenaltyBreakTemplateDeclaration
+# PenaltyExcessCharacter
+# PenaltyIndentedWhitespace
+# PenaltyReturnTypeOnItsOwnLine
+PointerAlignment: Right
+QualifierAlignment: Leave
+# QualifierOrder
+# RawStringFormats
+ReferenceAlignment: Right
+# ReflowComments: Always # Unrecognized on clang-format 18.1.8.
+ReflowComments: true
+# RemoveBracesLLVM
+# RemoveEmptyLinesInUnwrappedLines
+RemoveParentheses: Leave
+RemoveSemicolon: false
+# RequiresClausePosition
+# RequiresExpressionIndentation
+SeparateDefinitionBlocks: Always
+ShortNamespaceLines: 0
+SkipMacroDefinitionBody: true
+SortIncludes: CaseSensitive
+# SortJavaStaticImport
+SortUsingDeclarations: Lexicographic
+SpaceAfterCStyleCast: false
+SpaceAfterLogicalNot: false
+SpaceAfterTemplateKeyword: false
+SpaceAroundPointerQualifiers: Default
+SpaceBeforeAssignmentOperators: true
+SpaceBeforeCaseColon: false
+SpaceBeforeCpp11BracedList: false
+SpaceBeforeCtorInitializerColon: false
+SpaceBeforeInheritanceColon: false
+SpaceBeforeJsonColon: false
+SpaceBeforeParens: ControlStatements
+# SpaceBeforeParensOptions
+SpaceBeforeRangeBasedForLoopColon: true
+SpaceBeforeSquareBrackets: false
+SpaceInEmptyBlock: false
+# SpaceInEmptyParentheses # Deprecated.
+SpacesBeforeTrailingComments: 1
+SpacesInAngles: Never
+# SpacesInCStyleCastParentheses # Deprecated.
+# SpacesInConditionalStatement # Deprecated.
+SpacesInContainerLiterals: false
+SpacesInLineCommentPrefix:
+  Minimum: 1
+  Maximum: 1
+SpacesInParens: Never
+# SpacesInParensOptions
+# SpacesInParentheses # Deprecated.
+SpacesInSquareBrackets: false
+Standard: c++11
+# StatementAttributeLikeMacros
+# StatementMacros
+TabWidth: 2
+# TableGenBreakInsideDAGArg
+# TableGenBreakingDAGArgOperators
+# TemplateNames
+# TypeNames
+# TypenameMacros
+# UseCRLF # Deprecated.
+UseTab: AlignWithSpaces
+# VerilogBreakBetweenInstancePorts
+# WhitespaceSensitiveMacros
+...
